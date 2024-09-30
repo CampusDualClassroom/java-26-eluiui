@@ -2,6 +2,7 @@ package com.campusdual.classroom;
 
 import java.text.Normalizer;
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 
 public class Contact implements ICallActions {
@@ -9,6 +10,7 @@ public class Contact implements ICallActions {
     private String surnames;
     private String phone;
     private String code;
+    private Scanner scanner=new Scanner(System.in);
 
     public Contact(String name, String surnames, String phone) {
         this.name = name;
@@ -100,6 +102,36 @@ public class Contact implements ICallActions {
 
     public String getCode() {
         return code;
+    }
+    public void contactMenu(Contact contact) {
+        while (true) {
+            System.out.println("\n1. Llamarme a mí mismo");
+            System.out.println("2. Llamar a otro número");
+            System.out.println("3. Ver detalles del contacto");
+            System.out.println("4. Regresar al menú principal");
+            System.out.print("Opción: ");
+            int option = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (option) {
+                case 1:
+                    contact.callMyNumber();
+                    break;
+                case 2:
+                    System.out.print("Ingrese el número a llamar: ");
+                    String number = scanner.nextLine();
+                    contact.callOtherNumber(number);
+                    break;
+                case 3:
+                    contact.showContactDetails();
+                    break;
+                case 4:
+                    System.out.println("Regresando al menú principal...");
+                    return;
+                default:
+                    System.out.println("Opción inválida. Intente de nuevo.");
+            }
+        }
     }
 
     @Override
