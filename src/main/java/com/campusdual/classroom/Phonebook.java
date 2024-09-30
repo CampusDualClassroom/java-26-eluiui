@@ -30,7 +30,7 @@ public class Phonebook {
     public void selectContact(String code) {
         if (contacts.containsKey(code)) {
             Contact selectedContact = contacts.get(code);
-            selectedContact.showContactDetails();
+            selectedContact.contactMenu(selectedContact);
         } else {
             System.out.println("No se encontró ningún contacto con el código: " + code);
         }
